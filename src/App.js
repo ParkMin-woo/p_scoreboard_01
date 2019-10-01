@@ -1,20 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from "./components/Header";
 
 // 자식에서 부모로 통신하는 예제
 
-const Header = (props) => {
-  console.log("props in Header : " , props);
-  // result : {title: "NIKE Scoreboard", joinedPlayersCount: 11}
-  return (
-    <header className="header">
-      {/*SCOREBOARD*/}
-      <h1 className="h1">{props.title}</h1>
-      <span className="stats">PLAYERS : {props.joinedPlayersCount}</span>
-    </header>
-  );
-}
+
 
 const Player = (props) => {
   console.log("props in Player : " , props);
