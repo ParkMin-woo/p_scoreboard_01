@@ -47,7 +47,7 @@ class App extends React.Component {
     console.log("this.state in App : " , this.state);
     return (
       <div className="scoreboard">
-        <Header title = "NIKE Scoreboard" joinedPlayersCount = {this.state.players.length} />
+        <Header title = "NIKE Scoreboard" joinedPlayersCount = {this.state.players.length} players = {this.state.players} />
         {this.state.players.map(item =>
 					<Player
 						name = {item.name}
