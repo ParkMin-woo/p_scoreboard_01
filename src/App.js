@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from "./components/Header";
 import Player from "./components/Player";
+import AddPlayerForm from "./components/AddPlayerForm";
 
 // 자식에서 부모로 통신하는 예제
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
         {name : "Park Minwoo"  , score : 0 , id : 2 },
         {name : "Kim Dongheon" , score : 0 , id : 3 },
         {name : "Yoo Jaean" , score : 0 , id : 4 },
-      ]
+      ],
     };
   }
 
@@ -43,6 +44,32 @@ class App extends React.Component {
 
 	}
 
+	// handleAddPlayer = () => {
+  // 	alert("Developing!!!");
+  // 	console.log("this.state.value in handleAddPlayer : " , this.state.value);
+  // 	let maxId;
+  // 	this.state.players.forEach(player => {
+  // 		maxId = player.id;
+	// 	});
+  // 	console.log("maxId : ", maxId);
+  // 	const element = {name : this.state.value , score : 0 , id : maxId };
+  // 	this.setState(prevState => {
+	// 		prevState.players.push(
+	// 			element
+	// 		);
+	// 		alert("players in handleAddPlayer : " , prevState.players);
+	// 		return {players : [...prevState.players]};
+	// 	});
+  // 	alert("!!!");
+	// }
+
+	handleAddPlayer = (name) => {
+  	console.log("handleAddPlayer!!!"  , name);
+  	// this.setState = {
+  	//
+		// }
+	}
+
   render() {
     console.log("this.state in App : " , this.state);
     return (
@@ -59,6 +86,7 @@ class App extends React.Component {
 						scoreUpDown = {this.handleScoreUpDown}
 					/>)
         }
+        <AddPlayerForm addPlayer = {this.handleAddPlayer} />
       </div>
     );
 
