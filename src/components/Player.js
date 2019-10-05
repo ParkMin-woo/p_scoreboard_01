@@ -2,7 +2,7 @@ import React from 'react';
 import Counter from "./Counter";
 
 // const Player = (props) => {
-class Player extends React.PureComponent {
+class Player extends React.Component {
 	render() {
 		console.log(this.props.name , " rendered");
 		return (
@@ -15,6 +15,12 @@ class Player extends React.PureComponent {
 			</div>
 		);
 	}
+
+	shouldComponentUpdate(nextProps, nextState, nextContext) {
+		// console.log("nextProps in shouldComponentUpdate : " , nextProps);
+		return nextProps.score !== this.props.score ? true : false;
+	}
+
 }
 
 export default Player;
