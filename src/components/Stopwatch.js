@@ -4,19 +4,40 @@ export class Stopwatch extends React.Component {
 
 	tickRef;
 
+	constructor() {
+		super();
+		this.state = {
+			isRunning : false,
+			timer : 0,
+		}
+	}
+
+	handleStopWatch = () => {
+		this.setState(prevState => ({isRunning : !prevState.isRunning}));
+		console.log("this.state.isRunning in handleStopWatch : " , this.state.isRunning);
+	}
+
 	render() {
 		return (
 			<div className = "stopwatch">
 				<h2>Stopwatch</h2>
-				<span className = "stopwatch-time">0</span>
-				<button>Start</button>
-				<button>Reset</button>
+				<span className = "stopwatch-time">{this.state.timer}</span>
+				<button onClick={this.handleStopWatch}>{this.state.isRunning ? 'Stop' : 'Start'}</button>
+				<button onClick={this.handleReset}>Reset</button>
 			</div>
 		);
 	}
 
 	tick = () => {
+		if(this.state.isRunning) {
+			this.setState(prevState => ({timer : prevState.timer + 1}));
+		}
+	}
 
+	handleReset = () => {
+		// this.setState(prevState => ({timer : 0}));
+		this.setState({timer : 0});
+		console.log("this.state.timer in handleReset : " , this.state.timer);
 	}
 
 	// DOM이 렌더링 된 직후에 호출되는 라이프 사이클
