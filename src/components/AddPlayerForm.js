@@ -23,7 +23,7 @@ class AddPlayerForm extends React.Component {
 	render() {
 		console.log("this.props in AddPlayerForm : " , this.props);
 		return (
-			<form id = "form" className="form" onSubmit={this.handleSubmit} noValidate>
+			<form id = "form" className="form" onSubmit={this.handleSubmit}>
 				<input id ="player" className="input" type = "text" placeholder="Enter a Player's Name" ref = {this.textInput} required />
 				<input className="input" type = "submit" value = "Add Player" />
 			</form>

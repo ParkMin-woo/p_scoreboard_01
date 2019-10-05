@@ -1,6 +1,7 @@
 import React from "react";
 import Stats from "./Stats";
 import {Stopwatch} from "./Stopwatch";
+import PropTypes from 'prop-types';
 
 const Header = (props) => {
 	console.log("props in Header : " , props);
@@ -18,6 +19,21 @@ const Header = (props) => {
 			<Stopwatch />
 		</header>
 	);
+}
+
+Header.propTypes = {
+	// players : PropTypes.arrayOf(PropTypes.object),
+	players : PropTypes.arrayOf(PropTypes.shape({
+		id : PropTypes.number,
+		score : PropTypes.number,
+		name : PropTypes.string,
+	})),
+	title : PropTypes.string,
+	joinedPlayersCount : PropTypes.number,
+}
+
+Header.defaultProps = {
+	title : 'Ordinary Scoreboard',
 }
 
 export default Header;
