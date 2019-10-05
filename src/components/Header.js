@@ -5,13 +5,14 @@ import {Stopwatch} from "./Stopwatch";
 const Header = (props) => {
 	console.log("props in Header : " , props);
 	// result : {title: "NIKE Scoreboard", joinedPlayersCount: 11}
+	const { players, title , joinedPlayersCount } = props;
 	return (
 		<header className="header">
 
-			<Stats joinedPlayersCount = {props.joinedPlayersCount} players = {props.players}/>
+			<Stats joinedPlayersCount = {joinedPlayersCount} players = {players}/>
 
 			{/*SCOREBOARD*/}
-			<h1 className="h1">{props.title}</h1>
+			<h1 className="h1">{title}</h1>
 			{/*<span className="stats">PLAYERS : {props.joinedPlayersCount}</span>*/}
 
 			<Stopwatch />
