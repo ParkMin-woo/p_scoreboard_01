@@ -4,6 +4,7 @@ import './App.css';
 import Header from "./components/Header";
 import Player from "./components/Player";
 import AddPlayerForm from "./components/AddPlayerForm";
+import {connect} from "react-redux";
 
 // 자식에서 부모로 통신하는 예제
 class App extends React.Component {
@@ -96,6 +97,14 @@ class App extends React.Component {
   }
 }
 
+// store의 state를 props로 mapping해야함.
+const mapStateToProps = (state) => (
+	// 왼쪽은 props, 오른쪽은 store의 state
+	{
+		players : state.playerReducer.players,
+	}
+);
+
 {/*JSON Array 형태로 나타내보기*/}
 // const players = [
 // 	{name : "Kim Sooyoung" , id : 1 },
@@ -104,4 +113,5 @@ class App extends React.Component {
 // 	{name : "Yoo Jaean" , id : 4 },
 // ];
 
-export default App;
+// export default App;
+export default connect(mapStateToProps)(App);
