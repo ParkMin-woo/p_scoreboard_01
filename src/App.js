@@ -8,6 +8,8 @@ import AddPlayerForm from "./components/AddPlayerForm";
 // 자식에서 부모로 통신하는 예제
 class App extends React.Component {
 
+	maxId = 4;
+
   constructor() {
     super();
     this.state = {
@@ -64,10 +66,11 @@ class App extends React.Component {
 	// }
 
 	handleAddPlayer = (name) => {
-  	console.log("handleAddPlayer!!!"  , name);
-  	// this.setState = {
-  	//
-		// }
+  	this.setState(prevState => {
+  		const players = [...prevState.players];
+  		players.push({name , score : 0 , id : ++this.maxId});
+  		return {players};
+		});
 	}
 
   render() {
