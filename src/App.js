@@ -8,7 +8,7 @@ import AddPlayerForm from "./components/AddPlayerForm";
 // 자식에서 부모로 통신하는 예제
 class App extends React.Component {
 
-	maxId = 4;
+	// maxId = 4;
 
 	constructor() {
 		super();
@@ -46,6 +46,7 @@ class App extends React.Component {
 
 	}
 
+	// 내가 만들려고 시도해본거
 	// handleAddPlayer = () => {
 	// 	alert("Developing!!!");
 	// 	console.log("this.state.value in handleAddPlayer : " , this.state.value);
@@ -65,11 +66,29 @@ class App extends React.Component {
 	// 	alert("!!!");
 	// }
 
+	// 2019.10.05에서는 이런 방법으로 추가하는 함수를 만들었음.
+	// handleAddPlayer = (name) => {
+	// 	this.setState(prevState => {
+	// 		const players = [...prevState.players];
+	// 		players.push({name , score : 0 , id : ++this.maxId});
+	// 		return {players};
+	// 	});
+	// }
+
+	// https://eastflag.co.kr/react/scoreboard-by-c-r-a/controlled-component/
+	// 에 올라와있는 모범 답안
 	handleAddPlayer = (name) => {
 		this.setState(prevState => {
-			const players = [...prevState.players];
-			players.push({name , score : 0 , id : ++this.maxId});
-			return {players};
+			const maxId = prevState.players.reduce((max, player) => {
+				return max > player.id ? max : player.id;
+			} , 0);
+
+			return {
+				players: [
+					...prevState.players,
+					{name , score : 0 , id : maxId + 1}
+				]
+			}
 		});
 	}
 
