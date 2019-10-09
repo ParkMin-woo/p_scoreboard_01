@@ -21,6 +21,7 @@ class Player extends React.Component {
 				<Counter score = {score} scoreUpDown = {scoreUpDown} id = {id} />
 			</div>
 		);
+
 	}
 
 	shouldComponentUpdate(nextProps, nextState, nextContext) {
