@@ -4,35 +4,34 @@ import './App.css';
 import Header from "./components/Header";
 import Player from "./components/Player";
 import AddPlayerForm from "./components/AddPlayerForm";
-import {connect} from "react-redux";
 
 // 자식에서 부모로 통신하는 예제
 class App extends React.Component {
 
 	maxId = 4;
 
-  constructor() {
-    super();
-    this.state = {
-      players : [
-        {name : "Kim Sooyoung" , score : 0 , id : 1 },
-        {name : "Park Minwoo"  , score : 0 , id : 2 },
-        {name : "Kim Dongheon" , score : 0 , id : 3 },
-        {name : "Yoo Jaean" , score : 0 , id : 4 },
-      ],
-    };
-  }
+	constructor() {
+		super();
+		this.state = {
+			players : [
+				{name : "Kim Sooyoung" , score : 0 , id : 1 },
+				{name : "Park Minwoo"  , score : 0 , id : 2 },
+				{name : "Kim Dongheon" , score : 0 , id : 3 },
+				{name : "Yoo Jaean" , score : 0 , id : 4 },
+			],
+		};
+	}
 
-  handleRemovePlayer = (id) => {
-    this.setState(prevState => {
-      console.log("prevState.players in removePlayer : " , prevState.players);
-      return { players : prevState.players.filter(item => item.id !== id) };
-    });
-  }
+	handleRemovePlayer = (id) => {
+		this.setState(prevState => {
+			console.log("prevState.players in removePlayer : " , prevState.players);
+			return { players : prevState.players.filter(item => item.id !== id) };
+		});
+	}
 
-  handleScoreUpDown = (id, delta) => {
-  	console.log("id : " , id , "delta : " , delta);
-  	// id값에 따라서
+	handleScoreUpDown = (id, delta) => {
+		console.log("id : " , id , "delta : " , delta);
+		// id값에 따라서
 		// +, - 버튼을 누르면 증가, 감소하는 함수를 만든다.
 		this.setState(prevState => {
 			console.log("prevState in handleScoreUpDown : " , prevState);
@@ -48,38 +47,38 @@ class App extends React.Component {
 	}
 
 	// handleAddPlayer = () => {
-  // 	alert("Developing!!!");
-  // 	console.log("this.state.value in handleAddPlayer : " , this.state.value);
-  // 	let maxId;
-  // 	this.state.players.forEach(player => {
-  // 		maxId = player.id;
+	// 	alert("Developing!!!");
+	// 	console.log("this.state.value in handleAddPlayer : " , this.state.value);
+	// 	let maxId;
+	// 	this.state.players.forEach(player => {
+	// 		maxId = player.id;
 	// 	});
-  // 	console.log("maxId : ", maxId);
-  // 	const element = {name : this.state.value , score : 0 , id : maxId };
-  // 	this.setState(prevState => {
+	// 	console.log("maxId : ", maxId);
+	// 	const element = {name : this.state.value , score : 0 , id : maxId };
+	// 	this.setState(prevState => {
 	// 		prevState.players.push(
 	// 			element
 	// 		);
 	// 		alert("players in handleAddPlayer : " , prevState.players);
 	// 		return {players : [...prevState.players]};
 	// 	});
-  // 	alert("!!!");
+	// 	alert("!!!");
 	// }
 
 	handleAddPlayer = (name) => {
-  	this.setState(prevState => {
-  		const players = [...prevState.players];
-  		players.push({name , score : 0 , id : ++this.maxId});
-  		return {players};
+		this.setState(prevState => {
+			const players = [...prevState.players];
+			players.push({name , score : 0 , id : ++this.maxId});
+			return {players};
 		});
 	}
 
-  render() {
-    console.log("this.state in App : " , this.state);
-    return (
-      <div className="scoreboard">
-        <Header title = "NIKE Scoreboard" joinedPlayersCount = {this.state.players.length} players = {this.state.players} />
-        {this.state.players.map(item =>
+	render() {
+		console.log("this.state in App : " , this.state);
+		return (
+			<div className="scoreboard">
+				<Header title = "NIKE Scoreboard" joinedPlayersCount = {this.state.players.length} players = {this.state.players} />
+				{this.state.players.map(item =>
 					<Player
 						name = {item.name}
 						score = {item.score}
@@ -89,21 +88,13 @@ class App extends React.Component {
 						removePlayer = {this.handleRemovePlayer}
 						scoreUpDown = {this.handleScoreUpDown}
 					/>)
-        }
-        <AddPlayerForm addPlayer = {this.handleAddPlayer} />
-      </div>
-    );
+				}
+				<AddPlayerForm addPlayer = {this.handleAddPlayer} />
+			</div>
+		);
 
-  }
-}
-
-// store의 state를 props로 mapping해야함.
-const mapStateToProps = (state) => (
-	// 왼쪽은 props, 오른쪽은 store의 state
-	{
-		players : state.playerReducer.players,
 	}
-);
+}
 
 {/*JSON Array 형태로 나타내보기*/}
 // const players = [
@@ -113,5 +104,4 @@ const mapStateToProps = (state) => (
 // 	{name : "Yoo Jaean" , id : 4 },
 // ];
 
-// export default App;
-export default connect(mapStateToProps)(App);
+export default App
